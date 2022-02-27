@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Button, { Label } from '@smui/button';
 
+	import { data } from '../stores/store';
+
+	let my_data: string;
+
+	data.subscribe((value) => (my_data = value));
+
 	function handleClick(event: CustomEvent) {
-		console.log('hello world');
-		debugger;
+		data.update((n) => n + 'test');
 	}
 </script>
 
@@ -12,3 +17,7 @@
 <Button on:click={handleClick} variant="raised">
 	<Label>Click me</Label>
 </Button>
+
+<div>
+	This is my data: {my_data}
+</div>
